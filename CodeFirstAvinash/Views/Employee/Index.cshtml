@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CodeFirstAvinash.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@Html.Raw(TempData["insert"])
+@Html.Raw(TempData["update"])
+@Html.Raw(TempData["delete"])
+
+<h1 class="text-center bg-dark text-white">SHOW ALL EMPLOYEE</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-warning">Add New Employee</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Eid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Eid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Eid" onclick="return confirm('Are you Sure you want to Delete(Y/N)?');" >Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
